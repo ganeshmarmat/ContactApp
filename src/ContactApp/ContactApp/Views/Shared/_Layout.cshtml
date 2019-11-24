@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Contact Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @if (@ViewBag.Title == "Create")
+                    {
+                        <li> @Html.ActionLink("Create New Contact", "Create", "Contact", new { id = "selectedlink" })</li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("Create New Contact", "Create", "Contact")
+                        </li>
+                    }
+                    @if (@ViewBag.Title == "Index")
+                    {
+                        <li>@Html.ActionLink("View All Contact", "Index", "Contact", new { id = "selectedlink" })</li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("View All Contact", "Index", "Contact")
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Contact Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
