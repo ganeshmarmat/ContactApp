@@ -1,4 +1,5 @@
-﻿@model ContactApp.Models.ContactDetails
+﻿@using DataModel.Models
+@model ContactDetailsModel
 
 @{
     ViewBag.Title = "Create";
@@ -50,7 +51,7 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Status",
-                    new SelectList(Enum.GetValues(typeof(ContactApp.Models.Status))),
+                    new SelectList(Enum.GetValues(typeof(DataModel.Models.Status))),
                     "Select",
                     new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })

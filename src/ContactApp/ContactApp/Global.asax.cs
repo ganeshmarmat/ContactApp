@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataModel.Contract;
+using ObjectFactory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +12,10 @@ namespace ContactApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static IDataMapper<DataModel.Models.ContactDetailsModel, int> DataSource; 
         protected void Application_Start()
         {
+            DataSource= Factory.CreateInstance(InstanceType.LinqToXml);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

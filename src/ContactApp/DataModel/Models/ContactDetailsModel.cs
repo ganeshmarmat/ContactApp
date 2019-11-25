@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.Text;
 
-namespace ContactApp.Models
+namespace DataModel.Models
 {
-    public class ContactDetails
+    public class ContactDetailsModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [DisplayName("First Name")]
         public string FirstName { get; set; }
@@ -22,11 +21,12 @@ namespace ContactApp.Models
         [DisplayName("Phone Number")]
         [Phone]
         [Required]
-        public string PhoneNumber{ get; set; }
+        public string PhoneNumber { get; set; }
         [Required]
         public Status Status { get; set; }
     }
-    public enum Status{
+    public enum Status
+    {
         Active,
         Inactive
     }

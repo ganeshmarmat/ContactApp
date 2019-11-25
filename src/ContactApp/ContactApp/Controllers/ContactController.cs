@@ -1,4 +1,4 @@
-﻿using ContactApp.Models;
+﻿using DataModel.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,59 +10,53 @@ namespace ContactApp.Controllers
 {
     public class ContactController : Controller
     {
-        static List<ContactDetails> lstcd = new List<ContactDetails>();
-        static ContactController()
+
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
-            lstcd.Add(new ContactDetails { Id = "1", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "2", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "3", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "4", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "5", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "6", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
-            lstcd.Add(new ContactDetails { Id = "7", FirstName = "ganesh", LastName = "marmat", Email = "ganeshmarmat@gamil.com", PhoneNumber = "12341234", Status = Status.Active });
+            return View(MvcApplication.DataSource.GetById(id));
         }
 
-        public ActionResult Edit(string id)
-        {
-            return View(lstcd.FirstOrDefault(x => x.Id == id));
-        }
         [HttpPost]
-        public ActionResult Edit(ContactDetails cd)
+        public ActionResult Edit(ContactDetailsModel contactDetails)
         {
             if (ModelState.IsValid)
             {
-                lstcd[lstcd.IndexOf(lstcd.FirstOrDefault(x => x.Id == cd.Id))] = cd;
+                MvcApplication.DataSource.Edit(contactDetails);
                 return RedirectToAction("Index");
             }
-            return View(cd);
+            return View(contactDetails);
         }
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ContactDetails contactDetails)
+        public ActionResult Create(ContactDetailsModel contactDetails)
         {
             if (ModelState.IsValid)
             {
-                lstcd.Add(contactDetails);
+                MvcApplication.DataSource.Add(contactDetails);
                 return RedirectToAction("index");
             }
             return View(contactDetails);
         }
         // GET: Contact
+        [HttpGet]
         public ActionResult Index()
         {
-            return View(lstcd);
+            return View(MvcApplication.DataSource.GetAll());
         }
-        public ActionResult Delete(string id)
+        [HttpGet]
+        public ActionResult Delete(int id)
         {
-            return View(lstcd.FirstOrDefault(x => x.Id == id));
+            return View(MvcApplication.DataSource.GetById(id));
         }
         [HttpPost]
-        public ActionResult Delete(ContactDetails contactDetails)
+        public ActionResult Delete(ContactDetailsModel contactDetails)
         {
-            lstcd.RemoveAll(x => x.Id == contactDetails.Id);
+            MvcApplication.DataSource.Remove(contactDetails);
             return RedirectToAction("Index");
         }
     }

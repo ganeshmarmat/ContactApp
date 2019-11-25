@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ContactSchema"
+    targetNamespace="http://tempuri.org/ContactSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ContactSchema.xsd"
+    xmlns:mstns="http://tempuri.org/ContactSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Contacts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Contact"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Contact">
+    <xs:complexType>
+      <xs:attribute name="Id" type="xs:string"></xs:attribute>
+      <xs:attribute name="FirstName" type="xs:string"></xs:attribute>
+      <xs:attribute name="LastName" type="xs:string"></xs:attribute>
+      <xs:attribute name="Email" type="xs:string"></xs:attribute>
+      <xs:attribute name="Phone" type="xs:string"></xs:attribute>
+      <xs:attribute name="Status" type="xs:string"></xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
