@@ -9,19 +9,19 @@ Here I have tried to make more modular application for Datalayer user can choose
 
  <h1>How To Host</h1>
 <b>Using Visual Studio</b><br/>
-- open visiual studio in administrator mode<br/>
-- ContactApp right click and select publish<br/>
+1) open visiual studio in administrator mode<br/>
+2) ContactApp right click and select publish<br/>
 you can directly publish the appliction on IIS using this application<br/>
 <b>Setup IIS Enviroment</b></br>
 I have publish the website at WebHost/publish.zip.Please add extracted path as physical path in IIS. restart site will work fine. <br/>
 
-<h1>Usages</h1>
-  To enter into application please use username: <b>sa@user</b> and password: <b>P@ssw0rd</b><br/>
-  in ObjectRegistration class ObjectFactory.Factory.CreateInstance(ObjectFactory.InstanceType.LinqToXml);
+<h1>Usages</h1><br/>
+  1) To enter into application please use username: <b>sa@user</b> and password: <b>P@ssw0rd</b><br/>
+  2) In the ObjectRegistration class ObjectFactory.Factory.CreateInstance(ObjectFactory.InstanceType.LinqToXml);
   the InstanceType we can set either LinqToXml or SqlUtility accordingly we need to set other configuration as below.<br/>
-  if we set LinqtoXml the datasource will change to xml storage in that case we need to provide file path for it. <br/>
-  if we select SqlUtility the we need to add MSSQL server and need to provide database connection string.<br/>
-  we can configure these setting from ObjectFactory/Factory.cs</br>
+  - If we set LinqtoXml the datasource will change to xml storage in that case we need to provide file path for it. <br/>
+  - If we select SqlUtility the we need to add MSSQL server and need to provide database connection string.<br/>
+  We can configure these setting from ObjectFactory/Factory.cs</br>
   
   
 
