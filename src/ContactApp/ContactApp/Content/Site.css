@@ -1,7 +1,12 @@
-﻿#selectedlink
+﻿#highlight
 {
     color:white;
     background-color:black;
+}
+.user-bar {
+    color: white;
+    margin-top:-25px;
+    display:block;
 }
 body {
     padding-top: 50px;
