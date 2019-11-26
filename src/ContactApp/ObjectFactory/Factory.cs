@@ -10,6 +10,10 @@ namespace ObjectFactory
         {
             return new LinqToXmlDataMapper("..\\..\\..\\Sample.xml");
         }
+        private static IDataMapper<DataModel.Models.ContactDetailsModel, int> GetSqlUtility()
+        {
+            return new SqlUtility.SqlMapper(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContactAppDB;Integrated Security=True");
+        }
         public static IDataMapper<DataModel.Models.ContactDetailsModel, int> CreateInstance(InstanceType instanceType)
         {
             switch(instanceType)
@@ -21,6 +25,7 @@ namespace ObjectFactory
                     return GetLinqToXml();
                     break;
                 case InstanceType.SqlUtility:
+                    return GetSqlUtility();
                     break;
             }
 

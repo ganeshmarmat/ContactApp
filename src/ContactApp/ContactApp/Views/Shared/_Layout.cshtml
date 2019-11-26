@@ -12,6 +12,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-collapse collapse">
+                @if (ViewBag.Title != "Login")
+                {
                 <ul class="nav navbar-nav">
 
                     @if (@ViewBag.Title == "Create")
@@ -36,6 +38,7 @@
                     }
 
                 </ul>
+                }
             </div>
         </div>
     </div>
