@@ -7,16 +7,16 @@ using System.Web.Security;
 
 namespace ContactApp.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
         // GET: Login
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(DataModel.Models.UserModel user)
+        public ActionResult Login(DataModel.Models.UserModel user)
         {
             if (!ModelState.IsValid)
             {
@@ -29,11 +29,18 @@ namespace ContactApp.Controllers
                 var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(20), false,"Admin");
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                Session["UserID"] = user.Email;
                 HttpContext.Response.Cookies.Add(authCookie);
                 return RedirectToAction("Index", "Contact");
             }
             ModelState.AddModelError("","Invalid login details");
             return View(user);
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

@@ -12,13 +12,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-collapse collapse">
-                @if (ViewBag.Title != "Login")
-                {
                 <ul class="nav navbar-nav">
 
                     @if (@ViewBag.Title == "Create")
                     {
-                        <li> @Html.ActionLink("Create New Contact", "Create", "Contact", new { id = "selectedlink" })</li>
+                        <li> @Html.ActionLink("Create New Contact", "Create", "Contact", new { id = "highlight" })</li>
                     }
                     else
                     {
@@ -28,7 +26,7 @@
                     }
                     @if (@ViewBag.Title == "Index")
                     {
-                        <li>@Html.ActionLink("View All Contact", "Index", "Contact", new { id = "selectedlink" })</li>
+                        <li>@Html.ActionLink("View All Contact", "Index", "Contact", new { id = "highlight" })</li>
                     }
                     else
                     {
@@ -37,9 +35,13 @@
                         </li>
                     }
 
+
                 </ul>
-                }
             </div>
+            @if (Session["UserId"] != null)
+            {
+                <li align="right" class="user-bar"> @Session["UserId"]  <span></span> @Html.ActionLink("Log Off", "Logout", "Account")</li>
+            }
         </div>
     </div>
     <div class="container body-content">

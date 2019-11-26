@@ -12,10 +12,9 @@ namespace ContactApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static IDataMapper<DataModel.Models.ContactDetailsModel, int> DataSource; 
+        
         protected void Application_Start()
         {
-            DataSource= Factory.CreateInstance(InstanceType.SqlUtility);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

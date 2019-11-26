@@ -10,13 +10,18 @@ namespace LinqToXmlUtility.Helper
 {
     class SchemaHelper
     {
+        /// <summary>
+        /// serialize object into Binary data
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <param name="obj"></param>
         public static void Serialize(string filepath, object obj)
         {
             try
             {
+                //we dont want to readable file Binaryformatter suitable for it
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Write);
-
                 formatter.Serialize(stream, obj);
                 stream.Close();
             }catch(Exception ex)
@@ -24,6 +29,13 @@ namespace LinqToXmlUtility.Helper
                 throw;
             }
         }
+
+        /// <summary>
+        /// Deserialize object from binary data to orignal model
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
         public static T Deserialize<T>(string filepath)
         {
             try
@@ -40,6 +52,7 @@ namespace LinqToXmlUtility.Helper
             }
             
         }
+
         /// <summary>
         /// this method method help convert raw data object into model object
         /// </summary>
@@ -59,6 +72,12 @@ namespace LinqToXmlUtility.Helper
             };
 
         }
+
+        /// <summary>
+        /// Convert object into origanal model
+        /// </summary>
+        /// <param name="cntdata"></param>
+        /// <returns></returns>
         public static Contact ConvertBackToSchemaClass(ContactDetailsModel cntdata)
         {
            

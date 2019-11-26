@@ -15,6 +15,7 @@ namespace SqlUtility
         public SqlMapper(string connectionstring)
         {
             _connectionString = connectionstring;
+
         }
 
         public bool Add(ContactDetailsModel obj)

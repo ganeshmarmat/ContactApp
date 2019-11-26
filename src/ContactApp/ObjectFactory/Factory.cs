@@ -8,10 +8,12 @@ namespace ObjectFactory
     {
         private static IDataMapper<DataModel.Models.ContactDetailsModel, int> GetLinqToXml()
         {
+            //we can select the file for writing the data
             return new LinqToXmlDataMapper("..\\..\\..\\Sample.xml");
         }
         private static IDataMapper<DataModel.Models.ContactDetailsModel, int> GetSqlUtility()
         {
+            //we need to put a valid sql connection string here
             return new SqlUtility.SqlMapper(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContactAppDB;Integrated Security=True");
         }
         public static IDataMapper<DataModel.Models.ContactDetailsModel, int> CreateInstance(InstanceType instanceType)
