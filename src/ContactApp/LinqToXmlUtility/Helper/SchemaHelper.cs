@@ -21,7 +21,7 @@ namespace LinqToXmlUtility.Helper
             {
                 //we dont want to readable file Binaryformatter suitable for it
                 IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Write);
+                Stream stream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 formatter.Serialize(stream, obj);
                 stream.Close();
             }catch(Exception ex)
@@ -38,16 +38,18 @@ namespace LinqToXmlUtility.Helper
         /// <returns></returns>
         public static T Deserialize<T>(string filepath)
         {
+            Stream stream=null;
             try
             {
                 IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Read);
+                stream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Read);
                 var objnew = (T)formatter.Deserialize(stream);
                 stream.Close();
                 return objnew;
             }
             catch
             {
+                stream.Close();
                 return default(T);
             }
             
