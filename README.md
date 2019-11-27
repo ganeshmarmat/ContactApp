@@ -1,6 +1,7 @@
 # ContactApp
 This is practice assessment in MVC to manage the contact details.<br/>
-Please use username: <b>sa@user</b> and password: <b>P@ssw0rd</b>
+Please use username: <b>sa@user</b> and password: <b>P@ssw0rd</b><br/>
+hosted on http://ec2-3-19-217-12.us-east-2.compute.amazonaws.com/
 <h1>Architecture</h1>
 
  ![alt text](https://github.com/ganeshmarmat/ContactApp/blob/master/WebHost/Img1.png)
