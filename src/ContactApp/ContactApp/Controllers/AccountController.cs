@@ -13,7 +13,11 @@ namespace ContactApp.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            if (Session["UserID"] != null || Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Contact");
+            }
+                return View();
         }
         [HttpPost]
         public ActionResult Login(DataModel.Models.UserModel user)
@@ -40,6 +44,7 @@ namespace ContactApp.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session["UserID"] = null;
             return RedirectToAction("Login");
         }
     }
